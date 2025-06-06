@@ -1,0 +1,23 @@
+services:
+  micro-agent:
+    #extra_hosts:
+    #    - host.docker.internal:host-gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5050:8000
+    environment:
+      - PORT=8000
+      - DMR_BASE_URL=${DMR_BASE_URL}
+      - MODEL_RUNNER_CHAT_MODEL=${MODEL_RUNNER_CHAT_MODEL}
+    depends_on:
+      - download-chat-model
+      
+  download-chat-model:
+    #extra_hosts:
+    #    - host.docker.internal:host-gateway
+    provider:
+      type: model
+      options:
+        model: ${MODEL_RUNNER_CHAT_MODEL}
