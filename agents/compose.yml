@@ -1,7 +1,5 @@
 services:
   micro-agent:
-    #extra_hosts:
-    #    - host.docker.internal:host-gateway
     build:
       context: .
       dockerfile: Dockerfile
