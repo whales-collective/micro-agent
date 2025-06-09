@@ -1,7 +1,5 @@
 services:
   micro-agent:
-    #extra_hosts:
-    #    - host.docker.internal:host-gateway
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,14 +7,13 @@ services:
       - 5050:8000
     environment:
       - PORT=8000
-      - DMR_BASE_URL=${DMR_BASE_URL}
+      - OPENAI_API_BASE=${DMR_BASE_URL}/engines/llama.cpp/v1
+      - OPENAI_API_KEY="tada"
       - MODEL_RUNNER_CHAT_MODEL=${MODEL_RUNNER_CHAT_MODEL}
     depends_on:
       - download-chat-model
       
   download-chat-model:
-    #extra_hosts:
-    #    - host.docker.internal:host-gateway
     provider:
       type: model
       options:

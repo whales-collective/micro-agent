@@ -4,8 +4,8 @@ from google.adk.models.lite_llm import LiteLlm
 
 LiteLlm.set_verbose = True
 
-os.environ["OPENAI_API_KEY"] = "tada"
-os.environ["OPENAI_API_BASE"] = f"{os.environ.get('DMR_BASE_URL')}/engines/llama.cpp/v1"
+#os.environ["OPENAI_API_KEY"] = "tada"
+#os.environ["OPENAI_API_BASE"] = f"{os.environ.get('DMR_BASE_URL')}/engines/llama.cpp/v1"
 
 #os.environ["OPENAI_API_BASE"]="http://0.0.0.0:12434/engines/llama.cpp/v1"
 
