@@ -4,17 +4,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 5050:8000
+      - 8000:8000
     environment:
       - PORT=8000
-      - OPENAI_API_BASE=${DMR_BASE_URL}/engines/llama.cpp/v1
-      - OPENAI_API_KEY="tada"
-      - MODEL_RUNNER_CHAT_MODEL=${MODEL_RUNNER_CHAT_MODEL}
-    depends_on:
-      - download-chat-model
-      
-  download-chat-model:
-    provider:
-      type: model
-      options:
-        model: ${MODEL_RUNNER_CHAT_MODEL}
+    models:
+      qwen2_5:
+        endpoint_var: MODEL_RUNNER_BASE_URL
+        model_var: MODEL_RUNNER_CHAT_MODEL
+
+
+# NOTE: Define models
+models:
+  qwen2_5:
+    model: ai/qwen2.5:0.5B-F16

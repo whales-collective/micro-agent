@@ -2,21 +2,21 @@ import os
 from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 
-LiteLlm.set_verbose = True
+#LiteLlm.set_verbose = True
 
 #os.environ["OPENAI_API_KEY"] = "tada"
 #os.environ["OPENAI_API_BASE"] = f"{os.environ.get('DMR_BASE_URL')}/engines/llama.cpp/v1"
-
 #os.environ["OPENAI_API_BASE"]="http://0.0.0.0:12434/engines/llama.cpp/v1"
-
 #os.environ["OPENAI_API_BASE"] = f"{os.environ.get('DMR_BASE_URL')}/engines/llama.cpp/v1/chat/completions"
 
-print(f"🟡 Using model: {os.environ.get('MODEL_RUNNER_CHAT_MODEL')}")
-print(f"🟢 Using base URL: {os.environ.get('DMR_BASE_URL')}")
-print(f"🔵 Using API endpoint: {os.environ["OPENAI_API_BASE"]}")
 
 root_agent = Agent(
-    model=LiteLlm(model=f"openai/{os.environ.get('MODEL_RUNNER_CHAT_MODEL')}"),
+    model=LiteLlm(
+        model=f"openai/{os.environ.get('MODEL_RUNNER_CHAT_MODEL')}",
+        api_base=os.environ.get("MODEL_RUNNER_BASE_URL"),
+        api_key="tada",
+        temperature=0.5,
+    ),
     name="bob_agent",
     description=(
         """
